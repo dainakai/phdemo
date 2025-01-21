@@ -1,0 +1,14 @@
+expdate: 250108
+
+bundlez0: 129650.0
+prz: 64800.0
+
+datlen: 1024
+
+lambda: 0.6328
+dx: 10.0
+
+dz: 100.0
+slices: 1024
+
+threshold: 20

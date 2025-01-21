@@ -24,7 +24,7 @@ Performs background removal. Processed holograms are saved in the `20250121/01_b
 ```julia
 nimg = Int32.(reinterpret.(UInt8, img))
 ```
-accordingly.
+
 Processed images are clamped to [0,1] range using:
 ```julia
 img1 .= clamp.(img1, 0.0, 1.0)
@@ -36,11 +36,10 @@ include("src/bundle_adjustment.jl")
 ```
 
 Performs bundle adjustment. This corrects for in-plane rotation and translation misalignment between two simultaneous holograms. Correction coefficients are saved in the `20250121/02_calibaration` folder. When using `get_distortion_coefficients` with `verbose=true`, diagnostic images (`before_BA.png`, `after_BA.png`, `adjusted_image.png`) are generated in the project root:
-- `before_BA.png`: Pre-calibration images with displacement vector map
-- `after_BA.png`: Post-calibration images with residual vectors
-The vector map should show clean, continuous patterns rotating about the image center. Calibration is successful when the console-reported error falls below 0.2.
+- `before_BA.png`: Pre-calibration images with displacement vector map. The vector map should show clean, continuous patterns rotating about the image center.
+- `after_BA.png`: Post-calibration images with vector map. Calibration would be successful when the console-reported error falls below 0.2.
 
-This process uses a calibration plate (70µm random dot pattern on glass in sample data) positioned at the measurement volume center. Vector maps are created from Gabor-reconstructed holograms, with bundle adjustment solving normal equations to minimize total displacement magnitudes. See [documentation](https://dainakai.github.io/ParticleHolography.jl/dev/tutorials/pr/#bundle_adjustment) for details.
+This process uses a calibration plate (70µm random dot pattern on glass in sample data) positioned at the measurement volume center. Vector maps are created from Gabor-reconstructed holograms, with bundle adjustment solving normal equations to minimize total displacement magnitudes of the vector map. See [documentation](https://dainakai.github.io/ParticleHolography.jl/dev/tutorials/pr/#bundle_adjustment) for details.
 
 ```julia
 include("src/proc.jl")
@@ -49,7 +48,7 @@ include("src/proc.jl")
 Performs particle detection using phase retrieval holography. Detected particles are saved frame-by-frame in `20250121/03_particles`, x-y plane projections of the reconstruction volume in `20250121/05_xyproj`, and binarized images in `20250121/04_bin`.
 
 Processing parameters are configured in `variables.yaml` within the `20250121` directory. Key differences from the tutorial documentation:
-1. `particle_coor_diams`: Extends particle detection to estimate diameters using Otsu's thresholding on pre-binarization voxel data (bounding box + focal plane), making results independent of the `threshold` parameter
+1. `particle_coor_diams`: Extends particle detection to estimate diameters using Otsu's thresholding on reconstructed (pre-binarization) voxel data (bounding box + focal plane), making results independent of the `threshold` parameter
 2. `cu_dilate`: CUDA-accelerated morphological dilation enhances contrast for Tamura-based focus detection by expanding binarized regions
  
 ```julia

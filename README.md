@@ -67,3 +67,5 @@ include("src/plotwithpostproc.jl")
 ```
 
 Visualizes particle tracking results with color-coded trajectories and smoothed paths using post-processed data, compared to the raw visualization in `plotwithnopostproc.jl`.
+
+`Allclean.sh` can be used to clean up the project directory by removing all generated files except for the original images.

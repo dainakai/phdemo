@@ -41,7 +41,7 @@ anim = @animate for idx in 1:100
     particleplot(Dict(uuid4() => Float32.([-100, -100, -1000000000])), legend = false, scaling=(10.0, 10.0, -100.0), shift=(0.0, 0.0, 1e5), xlabel="x [µm]", ylabel="z [µm]", zlabel="y [µm]", xlim=(0,10240), ylim=(0,1e5), zlim=(0,10240), dpi=300)
 
     for idx in findall(result[:,1] .== idx)
-        particleplot!(Dict(uuid4() => Float32.([result[idx,3]*10.0, result[idx,4]*10.0, -result[idx,5]*100.0])), color=colors[result[idx,2] % length(colors) + 1])
+        particleplot!(Dict(uuid4() => Float32.([result[idx,3], result[idx,4], result[idx,5]])), color=colors[result[idx,2] % length(colors) + 1], scaling=(10.0, 10.0, -100.0), shift=(0.0, 0.0, 1e5), camera=(30, 30))
     end
 end
 

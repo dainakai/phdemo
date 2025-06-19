@@ -2,7 +2,7 @@
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://dainakai.github.io/ParticleHolography.jl/stable/)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://dainakai.github.io/ParticleHolography.jl/dev/)
-[![DOI](https://img.shields.io/badge/DOI-10.2139%2Fssrn.5003827-blue)](https://dx.doi.org/10.2139/ssrn.5003827)
+[![DOI](https://img.shields.io/badge/DOI-10.1016/j.softx.2025.102056-blue)](https://dx.doi.org/10.1016/j.softx.2025.102056)
 
 This provides a simple demo of ParticleHolography.jl. Water droplets settling in an acrylic chamber, captured in our lab, are stored in the `20250121/00_img` folder. This demo performs analysis using phase retrieval holography, with 100 time-series images captured by two cameras.
 
